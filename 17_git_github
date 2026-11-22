@@ -1,0 +1,589 @@
+============================================================
+GIT & GITHUB
+Version Control Basics
+============================================================
+
+1. INTRODUCTION
+
+1.1 What is Git?
+
+Git is a version control system that tracks changes made to your code.
+
+It allows you to:
+- Track every change made to your project.
+- Restore previous versions of your code.
+- Experiment with new ideas without affecting existing code.
+- Collaborate with other developers.
+
+GitHub is an online platform used to store and manage Git repositories.
+
+Think of Git as a save system for your code and GitHub as Google Drive for your code.
+
+1.2 Why Do You Need Git?
+
+As an AI Engineer, Git is an essential tool for managing projects.
+
+Key benefits:
+
+- Save Your Progress:
+  Track and save your code changes so you don't lose your work.
+
+- Experiment with Code:
+  Try new ideas without breaking your existing working code.
+
+- Share Projects:
+  Share your projects with employers, developers, and collaborators.
+
+- Access AI Projects:
+  Many AI and Machine Learning projects, libraries, and open-source tools are available on GitHub.
+
+1.3 Topics Covered
+
+This section focuses on essential Git and GitHub concepts:
+
+- Understanding Version Control (5 minutes)
+- Creating a GitHub Account (5 minutes)
+- Cloning and Creating Projects (10 minutes)
+- Using Git in VS Code (10 minutes)
+
+
+============================================================
+2. VERSION CONTROL
+============================================================
+
+2.1 Understanding the Problem Git Solves
+
+Imagine working on a Python project without using version control.
+
+You might end up creating multiple files to maintain different versions of your code:
+
+    my_script.py
+    my_script_v2.py
+    my_script_v2_final.py
+    my_script_v2_final_ACTUALLY_FINAL.py
+    my_script_backup_before_breaking_everything.py
+
+This approach creates confusion and makes it difficult to identify the latest working version.
+
+Git solves this problem by tracking changes systematically and maintaining the history of your project.
+
+2.2 How Git Works
+
+Think of Git as a system that takes snapshots of your code.
+
+The basic process:
+
+1. Write Code:
+   Create or modify files in your project.
+
+2. Save a Snapshot:
+   Save the changes using a Git commit.
+
+3. Track Changes:
+   Git maintains the history of your commits, including information about who made the changes, when they were made, and the commit message.
+
+Example:
+
+Monday - Initial Code (20% Markup)
+
+    def calculate_price(amount):
+        return amount * 1.20  # 20% markup
+
+Tuesday - Updated Code (25% Markup)
+
+    def calculate_price(amount):
+        return amount * 1.25  # Changed from 20% to 25%
+
+Wednesday - Requirement Changed Back to 20%
+
+The requirement is changed back to the original 20% markup.
+
+With Git:
+You can easily retrieve the previous version of the code.
+
+Without Git:
+You may need to search for an old backup file or manually rewrite the code.
+
+This is one of the main advantages of version control.
+
+
+============================================================
+3. IMPORTANT GIT CONCEPTS
+============================================================
+
+The following are the essential Git concepts to understand.
+
+3.1 Repository (Repo)
+
+A repository is a project or directory that is tracked and managed by Git.
+
+Example:
+
+Your "python-for-ai" project folder can be initialized as a Git repository.
+
+3.2 Staging
+
+Staging means selecting which file changes should be included in the next commit.
+
+Think of it as selecting items and placing them in a box before shipping.
+
+Git command:
+
+    git add .
+
+3.3 Commit
+
+A commit is a saved snapshot of the staged changes in your project.
+
+It allows you to maintain a history of your code changes.
+
+Think of it as saving progress in a video game. You can refer back to previous saved states.
+
+Git command:
+
+    git commit -m "Add price calculation function"
+
+3.4 Push
+
+Push uploads your local commits to a remote repository, such as GitHub.
+
+It helps back up your code online and share changes with others.
+
+Git command:
+
+    git push
+
+3.5 Pull
+
+Pull downloads changes from a remote repository and integrates them into your local repository.
+
+It is useful when working with other developers.
+
+Git command:
+
+    git pull
+
+3.6 Clone
+
+Clone creates a local copy of an existing remote Git repository.
+
+It is commonly used to download projects from GitHub.
+
+Git command:
+
+    git clone <repository-url>
+
+
+============================================================
+4. INSTALLING GIT
+============================================================
+
+4.1 Check Whether Git Is Installed
+
+Open the VS Code terminal and execute:
+
+    git --version
+
+If Git is installed, the terminal displays the installed Git version.
+
+If no version is displayed, Git needs to be installed.
+
+4.2 Installing Git
+
+Git can be installed on the following operating systems:
+
+- Windows
+- macOS
+- Linux
+
+Installation Steps:
+
+1. Visit the official Git website:
+   https://git-scm.com/
+
+2. Download the Git installer for your operating system.
+
+3. Run the installer.
+
+4. Keep the default installation settings.
+
+5. Complete the installation.
+
+6. Restart VS Code after installation.
+
+7. Open the terminal and verify the installation:
+
+       git --version
+
+
+============================================================
+5. BASIC GIT WORKFLOW
+============================================================
+
+5.1 The Simplest Git Workflow
+
+The following commands are sufficient to understand the basic Git workflow.
+
+IMPORTANT:
+These are terminal commands, not Python code.
+
+Execute them in the VS Code terminal.
+
+Step 0: Initialize Git (First Time Only)
+
+Navigate to your project directory and execute:
+
+    git init
+
+This initializes a new Git repository in the current project directory.
+
+Note:
+This command only needs to be executed once when setting up Git for a project.
+
+Step 1: Stage Your Changes
+
+    git add .
+
+This stages all changes in the current directory for the next commit.
+
+Step 2: Commit Your Changes
+
+    git commit -m "Add price calculation function"
+
+This creates a commit containing the staged changes.
+
+The commit message describes what was changed.
+
+Step 3: Push Your Changes to GitHub
+
+    git push
+
+This uploads your local commits to GitHub.
+
+Note:
+Before pushing, the local repository must be connected to a remote GitHub repository, and the necessary upstream configuration must be set.
+
+5.2 Complete Basic Workflow
+
+The basic sequence is:
+
+    git init
+    git add .
+    git commit -m "Add price calculation function"
+    git push
+
+Explanation:
+
+- git init: Initialize the repository (first time only).
+- git add .: Stage the changes.
+- git commit: Save the changes locally.
+- git push: Upload the commits to GitHub.
+
+IMPORTANT:
+If you encounter the following error:
+
+    fatal: not a git repository
+
+It means the current directory is not recognized as a Git repository.
+
+Solution:
+
+1. Navigate to your project directory.
+2. Execute:
+
+       git init
+
+3. Continue with the Git workflow.
+
+Note:
+You only need to initialize the repository once per project.
+
+5.3 Executing Git Commands
+
+You can execute Git commands in two ways:
+
+Option 1: Execute Commands One by One
+
+- Type one command in the terminal.
+- Press Enter.
+- Wait for the command to finish.
+- Execute the next command.
+
+Option 2: Execute Commands Together
+
+- Copy multiple commands.
+- Paste them into the terminal.
+- Press Enter.
+
+The terminal executes the commands sequentially.
+
+
+============================================================
+6. COMMON QUESTIONS
+============================================================
+
+Q1. Do I need to use the terminal?
+
+Q2. What if I make a mistake or mess up my code?
+
+Q3. Is Git the same as GitHub?
+
+============================================================
+END OF NOTES
+============================================================
+
+============================================================
+GITHUB SETUP
+Creating Your GitHub Account
+============================================================
+
+1. INTRODUCTION
+
+1.1 What is GitHub Setup?
+
+GitHub is an online platform used to store, manage, and share Git repositories.
+
+Creating a GitHub account is an essential step in managing your code and collaborating with other developers.
+
+GitHub is free to get started and takes approximately 5 minutes to set up.
+
+1.2 Why Do You Need a GitHub Account?
+
+As an AI Engineer, you will use GitHub for the following purposes:
+
+- Back Up Your Code:
+  Store your projects online so you don't lose your work.
+
+- Share Your Projects:
+  Share your code with employers, developers, and collaborators.
+
+- Access AI Tools:
+  Download open-source AI tools, libraries, and example projects.
+
+============================================================
+2. CREATE YOUR GITHUB ACCOUNT
+============================================================
+
+Step 1: Sign Up
+
+1. Visit the official GitHub website:
+   https://github.com/
+
+2. Click the "Sign up" button.
+
+3. Enter the following details:
+
+   Username:
+   Choose a professional username because employers and collaborators may see it.
+
+   Email:
+   Use an email address that you check regularly.
+
+   Password:
+   Create a strong and secure password.
+
+Step 2: Verify Your Account
+
+1. GitHub will send a verification email to your registered email address.
+
+2. Open your email inbox.
+
+3. Find the verification email from GitHub.
+
+4. Click the verification link to verify your account.
+
+Step 3: Set Up Your GitHub Profile
+
+After logging in to GitHub:
+
+1. Click your profile picture in the top-right corner.
+
+2. Select "Your profile".
+
+3. Click "Edit profile".
+
+4. Add the following information:
+
+   Name:
+   Enter your real name.
+
+   Profile Picture:
+   Upload a professional profile picture.
+
+   Bio:
+   Add a short description about yourself.
+
+   Example:
+   "Learning Python for AI Development"
+
+Note:
+Keep your GitHub profile professional because it can be viewed by employers and other developers.
+
+============================================================
+3. CONFIGURE GIT LOCALLY
+============================================================
+
+3.1 Why Configure Git?
+
+Git needs to know the name and email address of the person creating commits.
+
+This information is associated with your Git commits.
+
+You only need to configure these details once on your local machine.
+
+3.2 Configure Git Username and Email
+
+Step 1: Open VS Code.
+
+Step 2: Open the terminal.
+
+    Terminal > New Terminal
+
+Step 3: Execute the following commands.
+
+Configure your Git username:
+
+    git config --global user.name "Your Name"
+
+Configure your Git email:
+
+    git config --global user.email "your.email@example.com"
+
+IMPORTANT:
+Use the same email address associated with your GitHub account.
+
+3.3 Verify Git Configuration
+
+To verify the configured username:
+
+    git config --global user.name
+
+To verify the configured email:
+
+    git config --global user.email
+
+These commands display the username and email configured in Git.
+
+============================================================
+4. GITHUB AUTHENTICATION METHODS
+============================================================
+
+4.1 What is Authentication?
+
+Authentication is the process of verifying your identity when connecting your local Git repository to GitHub.
+
+GitHub supports different authentication methods.
+
+The three commonly used approaches are:
+
+1. GitHub CLI (gh)
+2. HTTPS with Personal Access Token
+3. SSH Keys
+
+RECOMMENDATION:
+
+GitHub CLI is recommended for beginners because it provides a simple authentication experience and can manage GitHub credentials automatically.
+
+============================================================
+5. GITHUB CLI (RECOMMENDED)
+============================================================
+
+5.1 What is GitHub CLI?
+
+GitHub CLI (gh) is the official command-line tool provided by GitHub.
+
+It allows you to interact with GitHub directly from your terminal.
+
+It simplifies authentication and other GitHub-related operations.
+
+5.2 Install GitHub CLI
+
+GitHub CLI can be installed on different operating systems.
+
+Windows:
+
+1. Visit the official website:
+   https://cli.github.com/
+
+2. Download the Windows installer.
+
+3. Run the installer and complete the installation.
+
+macOS:
+
+Execute the following command:
+
+    brew install gh
+
+Linux:
+
+Follow the official installation guide:
+
+    https://github.com/cli/cli#installation
+
+5.3 Authenticate Using GitHub CLI
+
+After installing GitHub CLI:
+
+Step 1: Open the VS Code terminal.
+
+Step 2: Execute the following command:
+
+    gh auth login
+
+Step 3: Follow the instructions displayed in the terminal.
+
+Select the following options:
+
+1. Choose GitHub.com.
+2. Choose an authentication protocol:
+   - SSH (Recommended)
+   - HTTPS
+3. Select browser-based authentication when prompted.
+4. Complete the authentication process in your browser.
+5. Authorize GitHub CLI if requested.
+
+Once authentication is successful, GitHub CLI stores and manages the necessary authentication credentials.
+
+Git operations can then use the configured GitHub authentication.
+
+============================================================
+6. AUTHENTICATION SUMMARY
+============================================================
+
+Available GitHub authentication methods:
+
+1. GitHub CLI (gh)
+   - Official GitHub command-line tool.
+   - Simplifies the authentication process.
+   - Recommended for beginners.
+
+2. HTTPS with Personal Access Token
+   - Uses HTTPS to connect to GitHub.
+   - Requires a Personal Access Token for authentication.
+
+3. SSH Keys
+   - Uses a public and private key pair.
+   - Allows secure authentication without entering credentials for every connection.
+
+Recommended Approach:
+
+Use GitHub CLI (gh) for a simple initial setup experience.
+
+============================================================
+7. WHAT'S NEXT?
+============================================================
+
+After completing the GitHub account setup and local Git configuration, the next step is to learn how to work with GitHub repositories.
+
+Upcoming topics:
+
+1. Creating Your First GitHub Repository.
+2. Connecting a Local Project to GitHub.
+3. Cloning Existing GitHub Projects.
+4. Pushing Local Code to GitHub.
+
+============================================================
+END OF NOTES
+============================================================
+

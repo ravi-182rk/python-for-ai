@@ -1,0 +1,14 @@
+Python paths
+Understanding how Python finds files
+
+The most confusing part of Python
+Understanding paths is probably the most confusing part when starting with Python. You’ll make mistakes with file paths and imports, and that’s totally fine. That’s how everyone learns.
+This page gives you a quick introduction. Some parts might not be completely clear right now, but as you practice, it will click. Come back to this page when you run into path issues - it happens to everyone!
+The mental model
+When working with multiple files, always think about two things:
+Where am I? - What folder is my Python script in?
+Where do I want to go? - What file or module do I need?
+Then navigate:
+Going down into subfolders: Use / for files, . for imports
+Going up to parent folders: Use ../ for files, add to sys.path for imports
+Same folder: Just use the filename
