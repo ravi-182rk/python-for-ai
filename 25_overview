@@ -1,0 +1,558 @@
+============================================================
+MODULE: MODERN PYTHON
+SECTION 4: COMPLETE WORKFLOW
+START-TO-FINISH PYTHON PROJECT SETUP
+============================================================
+
+In this section, we will bring everything together and learn how to set up a Python project from start to finish using uv, VS Code, Git, and GitHub.
+
+By the end, you will have a fully configured Python project with dependencies, environment variables, version control, and a GitHub repository.
+
+============================================================
+1. NEW PROJECT CHECKLIST
+============================================================
+
+Follow these steps every time you start a new Python project.
+
+STEP 1: OPEN THE TERMINAL
+
+Open your terminal application.
+
+macOS:
+    Terminal app or iTerm
+
+Windows:
+    Windows Terminal, Command Prompt, or PowerShell
+
+STEP 2: NAVIGATE TO YOUR PROJECTS FOLDER
+
+Go to your projects directory.
+
+macOS:
+
+    cd ~/Documents/Projects
+
+Windows PowerShell:
+
+    cd "$HOME\Documents\Projects"
+
+If the Projects folder does not exist, create it first.
+
+macOS/Linux:
+
+    mkdir -p ~/Documents/Projects
+
+Windows PowerShell:
+
+    New-Item -ItemType Directory -Force "$HOME\Documents\Projects"
+
+TIP:
+
+Create a dedicated folder for all your Python projects. This keeps your work organized and makes it easier to find your projects later.
+
+STEP 3: CREATE THE PROJECT
+
+Use uv to create your project:
+
+    uv init my-awesome-project
+
+This creates a new folder named my-awesome-project.
+
+It also generates the initial project files:
+
+    .gitignore
+    .python-version
+    pyproject.toml
+    README.md
+    main.py
+
+WHAT DOES EACH FILE DO?
+
+.gitignore       - Specifies files and folders Git should ignore.
+.python-version  - Specifies the project's Python version.
+pyproject.toml   - Stores project configuration and dependencies.
+README.md        - Contains project documentation.
+main.py          - Contains the example Python script.
+
+INITIAL PROJECT STRUCTURE:
+
+my-awesome-project/
+    .gitignore
+    .python-version
+    pyproject.toml
+    README.md
+    main.py
+
+NOTE:
+
+The .venv directory and uv.lock file are generally created when uv first needs to synchronize the project's dependencies.
+
+For example, this happens when you run uv add, uv sync, or uv run.
+
+STEP 4: OPEN THE PROJECT IN VS CODE
+
+Enter the project directory:
+
+    cd my-awesome-project
+
+Open it in VS Code:
+
+    code .
+
+WHAT HAPPENS?
+
+- VS Code opens with your project.
+- You can edit your Python files.
+- The Python extension can detect your project's virtual environment.
+- You can run and debug your Python code directly from VS Code.
+
+IMPORTANT:
+
+Make sure the Python extension is installed in VS Code.
+
+If the command code . does not work, configure the VS Code command-line launcher or open the project using VS Code's File > Open Folder option.
+
+STEP 5: ADD PACKAGES
+
+Open the integrated terminal in VS Code.
+
+Shortcut:
+
+    Ctrl + `
+
+Add the packages required by your project:
+
+    uv add requests
+    uv add pandas numpy
+    uv add python-dotenv
+
+For interactive Python environments, you can also install:
+
+    uv add --dev ipykernel
+
+WHAT HAPPENS?
+
+- Packages are downloaded and installed.
+- pyproject.toml is updated with your dependencies.
+- uv.lock records the resolved package versions.
+- The project's .venv environment is created or synchronized.
+
+STEP 6: TEST YOUR SETUP
+
+Open main.py and replace its contents with the following code:
+
+    import requests
+    from dotenv import load_dotenv
+    import os
+
+    # Load environment variables
+    load_dotenv()
+
+    # Test the setup
+    print("Packages imported successfully!")
+
+    # Test environment variable
+    api_key = os.environ.get("API_KEY", "not-set")
+
+    if api_key != "not-set":
+        print("API_KEY is configured successfully!")
+    else:
+        print("API_KEY is not configured.")
+
+    # Test requests
+    response = requests.get(
+        "https://api.github.com",
+        timeout=10
+    )
+
+    print(f"GitHub API status: {response.status_code}")
+
+Run the application:
+
+    uv run python main.py
+
+EXPECTED RESULT:
+
+    Packages imported successfully!
+    API_KEY is not configured.
+    GitHub API status: 200
+
+The API key message will depend on whether you have configured your .env file.
+
+The GitHub API status may vary depending on network connectivity or service availability.
+
+STEP 7: SET UP ENVIRONMENT VARIABLES
+
+Create a file named .env in your project directory.
+
+Example .env file:
+
+    API_KEY=your-secret-key-here
+    DATABASE_URL=postgresql://localhost/mydb
+    DEBUG=True
+
+This file stores environment-specific configuration and sensitive values.
+
+Now create another file named .env.example.
+
+Example .env.example file:
+
+    API_KEY=your-api-key-here
+    DATABASE_URL=your-database-url
+    DEBUG=True
+
+WHY CREATE .env.example?
+
+The .env file contains your actual configuration values.
+
+The .env.example file provides a template for other developers so they know which environment variables they need to configure.
+
+IMPORTANT SECURITY RULE:
+
+Never commit your actual .env file to GitHub.
+
+Open your .gitignore file and make sure it contains:
+
+    .env
+    .venv/
+    __pycache__/
+    *.py[cod]
+
+The generated .gitignore may already contain some of these entries.
+
+Check it before committing your project.
+
+Also remember:
+
+- Keep actual API keys private.
+- Never hardcode secrets in your Python files.
+- Do not share your .env file publicly.
+- Commit .env.example instead of .env.
+
+STEP 8: INITIALIZE GIT
+
+Git helps you track changes in your project.
+
+Open the VS Code terminal and run:
+
+Initialize the Git repository:
+
+    git init
+
+Stage your project files:
+
+    git add .
+
+Create your first commit:
+
+    git commit -m "Initial commit"
+
+WHAT HAPPENS?
+
+- Git starts tracking your project.
+- Files that are not excluded by .gitignore are staged.
+- Your first project snapshot is saved as a commit.
+
+NOTE:
+
+Make sure .env is listed in .gitignore before running git add .
+
+If you have already staged a sensitive file, remove it from the staging area before committing.
+
+STEP 9: CREATE A GITHUB REPOSITORY
+
+GitHub allows you to store your Git repository online and collaborate with other developers.
+
+You can create a GitHub repository directly from your terminal using GitHub CLI.
+
+USING GITHUB CLI (RECOMMENDED)
+
+Create a private repository:
+
+    gh repo create my-awesome-project --private --source=. --remote=origin --push
+
+Or create a public repository:
+
+    gh repo create my-awesome-project --public --source=. --remote=origin --push
+
+WHAT HAPPENS?
+
+- A repository is created on GitHub.
+- Your local repository is connected to GitHub.
+- The remote is configured with the name origin.
+- Your committed code is pushed to GitHub.
+
+INSTALLING GITHUB CLI
+
+If GitHub CLI is not installed, install it using the instructions for your operating system.
+
+macOS (Homebrew):
+
+    brew install gh
+
+Windows (winget):
+
+    winget install --id GitHub.cli
+
+You can also download it from:
+
+    https://cli.github.com/
+
+Linux (Debian/Ubuntu):
+
+Follow the official GitHub CLI installation instructions:
+
+    https://github.com/cli/cli/blob/trunk/docs/install_linux.md
+
+After installing GitHub CLI, authenticate with GitHub:
+
+    gh auth login
+
+Follow the instructions displayed in your terminal.
+
+IMPORTANT:
+
+The GitHub CLI command above assumes that you have already initialized Git and created at least one commit.
+
+============================================================
+2. YOUR PROJECT IS NOW READY
+============================================================
+
+Congratulations!
+
+Your project is now:
+
+- Set up locally using uv.
+- Configured with a virtual environment.
+- Equipped with the required dependencies.
+- Configured to use environment variables.
+- Tracked using Git.
+- Backed up on GitHub.
+
+You now have a complete modern Python development environment.
+
+============================================================
+3. THE DAILY DEVELOPMENT WORKFLOW
+============================================================
+
+Once your project is configured, your daily routine becomes simple.
+
+STEP 1: MAKE CHANGES
+
+Write or update your Python code.
+
+STEP 2: ADD PACKAGES WHEN NEEDED
+
+For example:
+
+    uv add some-package
+
+STEP 3: RUN YOUR CODE
+
+    uv run python main.py
+
+STEP 4: STAGE YOUR CHANGES
+
+    git add .
+
+STEP 5: COMMIT YOUR CHANGES
+
+    git commit -m "Add new feature"
+
+STEP 6: PUSH TO GITHUB
+
+    git push
+
+That's your everyday development workflow!
+
+============================================================
+4. PREFER CLICKING? USE VS CODE
+============================================================
+
+You do not have to execute every Git command manually.
+
+VS Code provides a graphical interface for common Git operations.
+
+SOURCE CONTROL PANEL
+
+Shortcut:
+
+    Ctrl + Shift + G
+
+You can use it to:
+
+- View modified files.
+- Stage changes.
+- Write commit messages.
+- Commit changes.
+- Push and pull changes.
+
+STATUS BAR
+
+The status bar displays your current Git branch and provides access to synchronization actions.
+
+COMMAND PALETTE
+
+Shortcut:
+
+    Ctrl + Shift + P
+
+Type Git to discover available Git commands.
+
+This makes Git operations easier, especially when you are starting out.
+
+For more details, refer to the Git and GitHub section.
+
+============================================================
+5. QUICK REFERENCE
+============================================================
+
+PROJECT SETUP (ONE TIME)
+
+    uv init project-name
+    cd project-name
+    code .
+
+    uv add requests pandas python-dotenv
+
+    git init
+    git add .
+    git commit -m "Initial commit"
+
+Create a GitHub repository:
+
+    gh repo create project-name --private --source=. --remote=origin --push
+
+DAILY DEVELOPMENT
+
+Add packages:
+
+    uv add package-name
+
+Run Python code:
+
+    uv run python script.py
+
+Stage changes:
+
+    git add .
+
+Commit changes:
+
+    git commit -m "message"
+
+Push changes:
+
+    git push
+
+============================================================
+6. PRO TIPS
+============================================================
+
+TIP 1: COMMIT OFTEN
+
+Small commits are easier to understand and manage than large commits containing many unrelated changes.
+
+TIP 2: WRITE CLEAR COMMIT MESSAGES
+
+Use meaningful commit messages.
+
+Good examples:
+
+    Fix login bug
+    Add user authentication
+    Update API integration
+    Improve error handling
+
+Avoid vague messages such as:
+
+    updates
+    changes
+    done
+
+TIP 3: USE .env FOR SECRETS
+
+Never hardcode API keys, passwords, or other sensitive values in your Python source code.
+
+Store them in environment variables and keep your actual .env file out of Git.
+
+TIP 4: KEEP IT SIMPLE
+
+Do not over-engineer small projects.
+
+Start with a simple structure and introduce additional files, folders, and tools when the project actually needs them.
+
+TIP 5: KEEP YOUR DEPENDENCIES ORGANIZED
+
+Use uv add to manage project dependencies instead of manually installing packages without updating your project configuration.
+
+TIP 6: COMMIT uv.lock
+
+Include uv.lock in Git so that other developers can reproduce the same resolved dependency versions.
+
+============================================================
+7. COMMANDS SUMMARY
+============================================================
+
+Here is everything in one place.
+
+PROJECT SETUP (ONE TIME)
+
+    uv init my-project
+    cd my-project
+    code .
+
+    uv add requests pandas python-dotenv
+    uv add --dev ipykernel
+
+Create a .env file containing your actual configuration.
+
+Make sure .env is listed in .gitignore.
+
+Initialize Git:
+
+    git init
+    git add .
+    git commit -m "Initial commit"
+
+Create a GitHub repository:
+
+    gh repo create my-project --private --source=. --remote=origin --push
+
+DAILY WORKFLOW
+
+    uv add package-name
+    uv run python script.py
+    git add .
+    git commit -m "message"
+    git push
+
+============================================================
+8. WHAT'S NEXT?
+============================================================
+
+You have completed the Python fundamentals course!
+
+You now understand how to:
+
+- Set up a modern Python development environment.
+- Manage Python versions and dependencies using uv.
+- Create and organize Python projects.
+- Work with environment variables and secrets.
+- Maintain code quality.
+- Use Git for version control.
+- Store and manage your projects using GitHub.
+
+YOUR NEXT STEPS:
+
+1. Build small Python applications to strengthen your fundamentals.
+2. Practice working with APIs and external services.
+3. Learn object-oriented programming and advanced Python concepts.
+4. Explore databases and backend development.
+5. Build real-world projects and publish them on GitHub.
+
+The best way to improve is to apply what you have learned by building actual projects.
+
+============================================================
+END OF SECTION
+============================================================

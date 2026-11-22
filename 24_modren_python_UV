@@ -1,0 +1,1097 @@
+============================================================
+PYTHON PRACTICAL
+MODULE: MODERN PYTHON
+============================================================
+
+SECTION 1: INTRODUCTION TO MODERN PYTHON
+Next-Level Development with uv
+
+1. WHY MODERN PYTHON TOOLS MATTER
+
+You have already learned the fundamentals of traditional Python development, including:
+
+- pip: Installing Python packages.
+- venv: Creating virtual environments.
+- requirements.txt: Managing project dependencies.
+- Python package installation and management.
+
+These tools are useful and widely used in Python projects.
+
+However, modern Python development offers newer tools that make development workflows faster, simpler, and more efficient.
+
+One of these tools is:
+
+    uv
+
+uv is a modern Python package and project manager designed to simplify Python development.
+
+1.1 Why Consider uv?
+
+uv provides several advantages:
+
+1. Speed:
+   uv is designed to be significantly faster than traditional package management workflows. Depending on the workload, it can be many times faster than pip.
+
+2. Simplicity:
+   It combines several common Python development tasks into one command-line tool.
+
+3. Reliability:
+   It provides dependency resolution and lockfile support to help maintain consistent project environments.
+
+4. All-in-One Tool:
+   It supports package installation, virtual environments, dependency management, and Python version management.
+
+5. Modern Workflow:
+   It provides a streamlined approach to creating and managing Python projects.
+
+============================================================
+2. THE PROBLEMS WITH TRADITIONAL pip WORKFLOWS
+============================================================
+
+Traditional Python development commonly uses separate tools for different tasks.
+
+Although these tools work well, managing them individually can sometimes become inconvenient.
+
+2.1 Slow Package Installation
+
+Installing packages with pip can take time, especially when:
+
+- Installing multiple dependencies.
+- Resolving complex dependency requirements.
+- Working with large projects.
+- Reinstalling packages in different environments.
+
+2.2 Confusing Virtual Environment Commands
+
+Python developers often need to remember multiple commands.
+
+Example:
+
+    python -m venv .venv
+
+    # Windows
+    .venv\Scripts\activate
+
+    # macOS / Linux
+    source .venv/bin/activate
+
+    pip install requests
+
+These commands work, but beginners may find environment creation and activation confusing.
+
+2.3 Different Tools for Different Tasks
+
+Traditional Python development may involve several tools:
+
+- pip: Package installation.
+- venv: Virtual environment creation.
+- pip-tools: Dependency compilation and management.
+- pyenv: Python version management.
+
+Using multiple tools can make project setup more complicated.
+
+2.4 Environment Management Problems
+
+Common problems include:
+
+- Installing packages into the wrong Python environment.
+- Dependency version conflicts.
+- Inconsistent development environments.
+- Difficulty reproducing another developer's setup.
+- Forgetting to update dependency files.
+
+Modern tools such as uv help simplify these workflows.
+
+============================================================
+3. WHAT IS uv?
+============================================================
+
+3.1 Definition
+
+uv is a modern, extremely fast Python package and project manager.
+
+It is developed by Astral and written in Rust.
+
+It provides a unified command-line interface for many common Python development tasks.
+
+3.2 What Can uv Replace?
+
+uv provides functionality that overlaps with several traditional Python tools.
+
+Traditional Tool       | Purpose
+-----------------------|--------------------------------
+pip                    | Package installation
+venv                   | Virtual environment management
+pip-tools              | Dependency management
+pyenv                  | Python version management
+
+IMPORTANT:
+
+uv can replace many common workflows involving these tools, but it does not reproduce every feature of each tool.
+
+For example:
+
+- uv pip provides a pip-compatible interface for package management.
+- uv provides commands for creating and managing virtual environments.
+- uv supports project dependency management and lockfiles.
+- uv can install and manage Python versions.
+
+3.3 Why Is uv So Fast?
+
+uv is written in Rust, a programming language designed for performance and memory safety.
+
+Its performance comes from several design choices, including:
+
+- Efficient dependency resolution.
+- Parallel package downloads.
+- Global caching.
+- Optimized package installation.
+- Efficient handling of Python environments.
+
+These features help make package management and project setup faster.
+
+============================================================
+4. WHAT YOU WILL LEARN
+============================================================
+
+In this Modern Python module, you will explore modern tools and workflows that help improve Python development.
+
+The topics may include:
+
+1. Understanding uv:
+   Learn what uv is and why modern Python developers use it.
+
+2. Installing uv:
+   Install and configure uv on your computer.
+
+3. Managing Python Versions:
+   Install and select different Python versions using uv.
+
+4. Creating Python Projects:
+   Create and organize projects using modern project-management commands.
+
+5. Managing Virtual Environments:
+   Create and manage project environments using uv.
+
+6. Installing Packages:
+   Install Python packages using uv.
+
+7. Managing Dependencies:
+   Add, remove, and update project dependencies.
+
+8. Understanding pyproject.toml:
+   Learn how modern Python projects define their configuration and dependencies.
+
+9. Understanding uv.lock:
+   Learn how lockfiles help maintain consistent dependency versions.
+
+10. Running Python Applications:
+    Execute Python scripts and project commands through uv.
+
+============================================================
+5. KEY TAKEAWAYS
+============================================================
+
+1. Modern Python tools help simplify development workflows.
+
+2. Traditional Python development commonly uses pip, venv, pip-tools, and pyenv.
+
+3. Managing multiple tools separately can sometimes become complicated.
+
+4. uv is a modern Python package and project manager.
+
+5. uv is written in Rust and designed for high performance.
+
+6. uv supports package installation, virtual environments, dependency management, and Python version management.
+
+7. uv can replace many common workflows involving traditional Python tools.
+
+8. uv helps create faster and more consistent Python development environments.
+
+============================================================
+END OF SECTION 1
+MODULE: MODERN PYTHON
+============================================================
+
+
+============================================================
+PYTHON PRACTICAL
+MODULE: MODERN PYTHON
+============================================================
+
+SECTION 2: WHY uv?
+The Future of Python Packaging
+
+1. SEE THE DIFFERENCE: pip VS uv
+
+Let's compare installing a Python package using traditional pip and modern uv.
+
+1.1 Using pip (Traditional Approach)
+
+Command:
+
+    pip install pandas
+
+Explanation:
+
+- pip downloads and installs the pandas package.
+- It resolves the required dependencies.
+- It installs the package into the active Python environment.
+
+1.2 Using uv (Modern Approach)
+
+Command:
+
+    uv pip install pandas
+
+Explanation:
+
+- uv provides a pip-compatible interface.
+- It installs pandas and its required dependencies.
+- It uses optimized dependency resolution, caching, and package installation.
+
+1.3 Performance Comparison
+
+Example of approximate installation times:
+
+Traditional pip:
+
+    pip install pandas
+
+    # Example: 15-30 seconds
+
+Modern uv:
+
+    uv pip install pandas
+
+    # Example: 1-2 seconds
+
+The exact installation time depends on several factors:
+
+- Internet connection speed.
+- Package size.
+- Dependency count.
+- Whether packages are already cached.
+- Operating system and hardware.
+
+IMPORTANT:
+
+uv can be significantly faster than pip, but the exact speed improvement is not guaranteed for every installation.
+
+============================================================
+2. REAL-WORLD COMPARISON
+============================================================
+
+Let's compare creating a new Python project using traditional tools and uv.
+
+2.1 Traditional Python Workflow
+
+Step 1: Create a Virtual Environment
+
+Command:
+
+    python -m venv .venv
+
+Step 2: Activate the Virtual Environment
+
+Windows:
+
+    .venv\Scripts\activate
+
+macOS / Linux:
+
+    source .venv/bin/activate
+
+Step 3: Install Packages
+
+Command:
+
+    pip install requests pandas numpy
+
+Step 4: Save Dependencies
+
+Command:
+
+    pip freeze > requirements.txt
+
+Explanation:
+
+- Creates a virtual environment.
+- Activates the environment.
+- Installs the required packages.
+- Saves installed package versions into requirements.txt.
+
+Traditional workflow summary:
+
+    Time: Example approximately 45 seconds
+
+    Commands: 4 or more
+
+NOTE:
+The time is illustrative, not a guaranteed benchmark. The number of commands can also vary depending on the operating system and project requirements.
+
+2.2 Modern Python Workflow with uv
+
+The same basic project setup can be performed with fewer commands.
+
+Step 1: Create a New Project
+
+    uv init my-project
+
+Step 2: Add Required Packages
+
+    cd my-project
+
+    uv add requests pandas numpy
+
+Explanation:
+
+- Creates a new Python project.
+- Adds the required dependencies.
+- Updates the project's dependency configuration.
+- Creates or updates the uv.lock file.
+
+Step 3: Run Your Application
+
+    uv run python main.py
+
+uv automatically manages the project's environment and dependencies.
+
+Modern workflow summary:
+
+    Tool: uv
+
+    Project setup: Simplified
+
+    Dependency management: Integrated
+
+    Environment management: Automatic through project commands
+
+IMPORTANT:
+
+The traditional and modern workflows use different dependency-management approaches.
+
+Traditional projects commonly use requirements.txt.
+
+Modern uv-managed projects commonly use pyproject.toml and uv.lock.
+
+============================================================
+3. WHY IS uv SO FAST?
+============================================================
+
+uv uses several performance optimizations to make Python package management faster.
+
+3.1 Written in Rust
+
+uv is written in Rust, a compiled programming language designed for performance and memory safety.
+
+This helps uv execute package-management operations efficiently.
+
+3.2 Smart Caching
+
+uv maintains a cache of downloaded packages and related files.
+
+When the same packages are needed again, uv can reuse cached data instead of downloading everything again.
+
+Benefits:
+
+- Reduces repeated downloads.
+- Saves installation time.
+- Improves repeated project setup.
+
+3.3 Parallel Downloads
+
+uv can download multiple packages concurrently.
+
+This reduces the waiting time compared with downloading packages one after another.
+
+3.4 Optimized Dependency Resolution
+
+Python projects may require many packages with different version requirements.
+
+uv uses an optimized dependency resolver to find compatible package versions efficiently.
+
+These features together contribute to uv's performance.
+
+============================================================
+4. MORE THAN JUST SPEED
+============================================================
+
+One of the biggest advantages of uv is that it combines several Python development tasks into one tool.
+
+4.1 Traditional Python Toolset
+
+Traditional Python development may require several separate tools.
+
+1. pip:
+   Installs Python packages.
+
+2. venv:
+   Creates virtual environments.
+
+3. pip-tools:
+   Helps manage and compile dependency requirements.
+
+4. pyenv:
+   Manages multiple Python versions.
+
+5. pipx:
+   Installs and runs Python command-line applications in isolated environments.
+
+Using separate tools means learning and managing different commands.
+
+4.2 Modern Python with uv
+
+uv combines many of these common workflows.
+
+It supports:
+
+- Package installation.
+- Virtual environment management.
+- Dependency management.
+- Lockfile generation.
+- Python version installation and management.
+- Running Python scripts and applications.
+- Project and workspace management.
+
+Instead of switching between multiple tools, you can use uv for many common development tasks.
+
+IMPORTANT:
+
+uv provides overlapping functionality, but it does not necessarily replace every specialized feature of the traditional tools.
+
+============================================================
+5. IT JUST WORKS: SIMPLER ENVIRONMENT MANAGEMENT
+============================================================
+
+Traditional Python development sometimes creates confusion, especially for beginners.
+
+Common questions include:
+
+1. Did I activate my virtual environment?
+2. Which Python interpreter am I using?
+3. Did I install the package into the correct environment?
+4. Why is this package conflicting with another package?
+5. Did I save the correct dependency versions?
+
+uv helps simplify these workflows.
+
+For example:
+
+    uv run python main.py
+
+When working with a uv-managed project, uv automatically prepares and uses the project's environment.
+
+You do not need to manually activate the virtual environment every time you run the application through uv.
+
+NOTE:
+
+uv does not eliminate every possible dependency conflict or environment issue. It helps manage these tasks more consistently.
+
+============================================================
+6. MODERN FEATURES OF uv
+============================================================
+
+uv provides several features that support modern Python development.
+
+6.1 Lock Files
+
+uv uses a lockfile named:
+
+    uv.lock
+
+Purpose:
+
+- Records resolved dependency versions.
+- Helps reproduce the same dependency environment.
+- Improves consistency between developers and deployment environments.
+
+6.2 Workspace Support
+
+uv supports workspaces.
+
+A workspace allows multiple related Python packages or projects to be managed together.
+
+This is useful for larger applications and multi-package repositories.
+
+6.3 Script Running
+
+uv can execute Python scripts without requiring you to manually activate a virtual environment.
+
+Example:
+
+    uv run python script.py
+
+It also supports running standalone scripts with their own declared dependencies.
+
+6.4 Python Version Management
+
+uv can install and manage Python versions.
+
+For example:
+
+    uv python list
+
+This helps you discover available Python versions.
+
+You can also install a specific Python version using:
+
+    uv python install 3.12
+
+============================================================
+7. INSTALLING uv
+============================================================
+
+uv provides installation methods for different operating systems.
+
+7.1 macOS / Linux
+
+Open your terminal and execute:
+
+    curl -LsSf https://astral.sh/uv/install.sh | sh
+
+This downloads and runs the official uv installation script.
+
+7.2 Windows
+
+Open PowerShell and execute:
+
+    irm https://astral.sh/uv/install.ps1 | iex
+
+This downloads and runs the official Windows installation script.
+
+7.3 Restart Your Terminal
+
+After installation, restart your terminal so the updated PATH configuration can be loaded.
+
+7.4 Verify the Installation
+
+Execute:
+
+    uv --version
+
+If uv is installed correctly, the terminal displays its installed version.
+
+Example:
+
+    uv 0.x.x
+
+The exact version will depend on the release installed.
+
+SECURITY NOTE:
+
+Installation scripts execute code on your computer. Use the official Astral installation instructions and review the commands if your organization's security policy requires it.
+
+============================================================
+8. QUICK uv COMMANDS
+============================================================
+
+Here are some important commands to remember.
+
+8.1 Create a New Project
+
+    uv init my-project
+
+Purpose:
+
+Creates a new Python project named my-project.
+
+8.2 Add Packages
+
+    uv add requests pandas
+
+Purpose:
+
+Adds requests and pandas as project dependencies.
+
+8.3 Install Project Dependencies
+
+    uv sync
+
+Purpose:
+
+Synchronizes the project's virtual environment with the dependencies declared in the project configuration and lockfile.
+
+8.4 Run a Python Script
+
+    uv run python script.py
+
+Purpose:
+
+Runs a Python script using the project's managed environment.
+
+8.5 Check uv Version
+
+    uv --version
+
+Purpose:
+
+Displays the installed uv version.
+
+============================================================
+9. SHOULD YOU SWITCH TO uv?
+============================================================
+
+uv is a good choice for developers who want a modern Python development workflow.
+
+9.1 Consider Switching If You Want:
+
+1. Faster Development:
+   Reduce time spent installing packages and managing environments.
+
+2. Simpler Commands:
+   Manage common Python development tasks using one tool.
+
+3. Less Confusion:
+   Reduce manual virtual environment management.
+
+4. Modern Tooling:
+   Use modern dependency management and lockfile support.
+
+5. Reproducible Projects:
+   Maintain consistent dependency versions across development environments.
+
+9.2 When Should You Wait?
+
+You may prefer to continue using traditional tools temporarily if:
+
+1. Your Team Uses pip:
+   Your existing team workflow may already depend on pip and requirements.txt.
+
+2. You Have Complex Legacy Projects:
+   Older projects may have custom dependency-management processes.
+
+3. You Are Just Starting:
+   Understanding pip, venv, and requirements.txt first can help you understand the problems uv solves.
+
+IMPORTANT:
+
+Learning traditional Python tools is still valuable.
+
+Understanding pip and virtual environments makes it easier to understand what uv is doing behind the scenes.
+
+============================================================
+10. BACKWARD COMPATIBILITY
+============================================================
+
+One useful feature of uv is that it supports existing Python dependency workflows.
+
+For example, uv can install dependencies from an existing requirements.txt file.
+
+Command:
+
+    uv pip install -r requirements.txt
+
+It can also create a virtual environment:
+
+    uv venv
+
+And install packages into that environment:
+
+    uv pip install requests pandas
+
+This means you do not need to convert every existing Python project immediately.
+
+You can gradually introduce uv into your existing workflow.
+
+NOTE:
+
+The uv pip interface is designed to be compatible with common pip workflows, but it is not a complete replacement for every pip command or behavior.
+
+============================================================
+11. KEY TAKEAWAYS
+============================================================
+
+1. uv is a modern Python package and project manager.
+
+2. uv can install packages significantly faster than pip in many situations.
+
+3. uv is written in Rust and uses performance optimizations.
+
+4. It supports smart caching and parallel package downloads.
+
+5. It combines many common workflows from pip, venv, pip-tools, pyenv, and pipx.
+
+6. uv supports virtual environment management.
+
+7. uv provides project dependency management through pyproject.toml.
+
+8. uv.lock helps maintain reproducible dependency installations.
+
+9. uv can install and manage Python versions.
+
+10. uv can work with existing requirements.txt files.
+
+11. You can use uv run to execute Python applications through the managed environment.
+
+12. Learning traditional Python tools remains useful even when adopting uv.
+
+============================================================
+END OF SECTION 2
+MODULE: MODERN PYTHON
+============================================================
+
+
+
+============================================================
+MODULE: MODERN PYTHON
+SECTION 3: USING UV
+CREATE PROJECTS THE MODERN WAY
+============================================================
+
+uv makes it easy to create Python projects, manage dependencies, maintain consistent environments, and run code.
+
+Let's build a real project using uv.
+
+============================================================
+1. CREATING A NEW PROJECT
+============================================================
+
+Create a new project and move into its directory:
+
+Create a new project:
+    uv init ai-assistant
+
+Enter the project directory:
+    cd ai-assistant
+
+This creates a project structure similar to the following:
+
+ai-assistant/
+    .gitignore
+    .python-version
+    pyproject.toml
+    README.md
+    main.py
+
+File descriptions:
+
+.gitignore       - Files Git should ignore.
+.python-version  - Python version for the project.
+pyproject.toml   - Project configuration.
+README.md        - Project documentation.
+main.py          - Example Python script.
+
+NOTE:
+
+The .venv directory and uv.lock file are generally created when uv first needs to resolve and install the project's dependencies, such as when you run uv add, uv sync, or uv run.
+
+============================================================
+2. UNDERSTANDING pyproject.toml
+============================================================
+
+The pyproject.toml file is the central configuration file for a modern Python project.
+
+A newly initialized project may contain something like this:
+
+[project]
+name = "ai-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = []
+
+It stores important project information, including:
+
+- Project name and version
+- Python version requirements
+- Project description
+- Runtime dependencies
+- Development tools and other configuration
+
+In many modern projects, pyproject.toml brings together configuration that might previously have been spread across files such as:
+
+requirements.txt - Commonly used to list installable dependencies.
+setup.py         - Traditionally used for package configuration and installation.
+setup.cfg        - Used for package and tool configuration.
+
+Think of pyproject.toml as the central configuration file for your Python project.
+
+It does not make every older configuration file unnecessary in every project, but it provides a modern, standardized place for project metadata and tool configuration.
+
+============================================================
+3. ADDING PACKAGES
+============================================================
+
+Use uv add to add dependencies to your project.
+
+Add one package:
+    uv add requests
+
+Add multiple packages:
+    uv add pandas numpy matplotlib
+
+Add development dependencies:
+    uv add --dev pytest black
+
+When you add packages, uv automatically:
+
+1. Updates pyproject.toml.
+2. Resolves compatible package versions.
+3. Updates or creates uv.lock.
+4. Synchronizes the project's virtual environment.
+
+Your pyproject.toml will contain configuration similar to this:
+
+[project]
+name = "ai-assistant"
+version = "0.1.0"
+description = "Add your description here"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "requests>=2.32.0",
+    "pandas>=2.2.0",
+    "numpy>=1.26.0",
+    "matplotlib>=3.8.0",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=8.0.0",
+    "black>=24.0.0",
+]
+
+Runtime dependencies are required by your application.
+
+Development dependencies are used during development, testing, and code quality checks. They are not necessarily required by users running your application.
+
+The exact version constraints depend on the packages available when you add them.
+
+============================================================
+4. UNDERSTANDING THE LOCK FILE
+============================================================
+
+One of the most useful features of uv is its lock file: uv.lock.
+
+This file records the exact dependency resolution for your project, including package versions and their dependencies.
+
+A simplified example:
+
+version = 1
+requires-python = ">=3.12"
+
+[[package]]
+name = "requests"
+version = "2.32.3"
+dependencies = [
+    { name = "certifi" },
+    { name = "charset-normalizer" },
+]
+
+The actual lock file contains more information than this simplified example.
+
+WHY IS uv.lock IMPORTANT?
+
+Imagine you and another developer are working on the same project.
+
+Without a lock file, each developer might install different compatible versions of a dependency.
+
+With uv.lock, both developers can install the same resolved dependency versions, helping maintain consistent environments.
+
+Commit uv.lock to version control so other developers and deployment environments can use the same dependency resolution.
+
+============================================================
+5. RUNNING YOUR PYTHON CODE
+============================================================
+
+There are several ways to run Python code in a project managed by uv.
+
+METHOD 1: USE uv run (RECOMMENDED)
+
+    uv run python main.py
+
+This is the simplest approach.
+
+uv run automatically uses the project's environment and ensures its dependencies are synchronized when needed.
+
+You do not need to activate the virtual environment manually.
+
+METHOD 2: ACTIVATE THE VIRTUAL ENVIRONMENT
+
+If you prefer the traditional approach, activate the project's virtual environment.
+
+macOS/Linux:
+
+    source .venv/bin/activate
+
+Windows PowerShell:
+
+    .venv\Scripts\Activate.ps1
+
+Then run:
+
+    python main.py
+
+METHOD 3: USE THE PYTHON EXECUTABLE DIRECTLY
+
+You can also run Python using the executable inside .venv.
+
+macOS/Linux:
+
+    .venv/bin/python main.py
+
+Windows:
+
+    .venv\Scripts\python.exe main.py
+
+RECOMMENDATION:
+
+Use uv run for everyday project development. It helps ensure that commands run with the correct project environment.
+
+============================================================
+6. COMMON uv COMMANDS
+============================================================
+
+Here are some useful commands to remember.
+
+Create a new project:
+    uv init project-name
+
+Add a package:
+    uv add package-name
+
+Remove a package:
+    uv remove package-name
+
+Install and synchronize dependencies:
+    uv sync
+
+Upgrade a package:
+    uv add --upgrade package-name
+
+List installed packages:
+    uv pip list
+
+Run a Python script:
+    uv run python script.py
+
+Check the uv version:
+    uv --version
+
+These commands cover many common project management tasks.
+
+============================================================
+7. WORKING WITH EXISTING PROJECTS
+============================================================
+
+Already have a Python project using requirements.txt?
+
+You can work with it using uv without starting from scratch.
+
+OPTION 1: ADD REQUIREMENTS TO pyproject.toml
+
+    uv add -r requirements.txt
+
+This adds the listed requirements as project dependencies and updates the project configuration and lock file.
+
+OPTION 2: INSTALL DIRECTLY FROM requirements.txt
+
+    uv pip install -r requirements.txt
+
+This uses uv's pip-compatible interface to install packages into the selected Python environment.
+
+The second approach is useful when you want to keep using an existing requirements.txt workflow.
+
+============================================================
+8. UNDERSTANDING VIRTUAL ENVIRONMENTS
+============================================================
+
+uv manages project virtual environments automatically.
+
+A few important points:
+
+- The default project environment is stored in .venv.
+- It is created when uv needs to synchronize project dependencies.
+- You can use uv run without manually activating it.
+- VS Code can use the .venv interpreter once it is selected or detected.
+- The generated .gitignore commonly excludes .venv.
+
+WHY USE A VIRTUAL ENVIRONMENT?
+
+A virtual environment keeps each project's dependencies separate.
+
+For example, one project can use an older version of a package while another project uses a newer version without interfering with each other.
+
+============================================================
+9. TIPS AND TRICKS
+============================================================
+
+A. INSTALL GLOBAL COMMAND-LINE TOOLS
+
+Use uv tool install to install Python command-line tools in isolated environments.
+
+    uv tool install black
+    uv tool install mypy
+
+This is useful for tools you want to run across multiple projects without adding them as dependencies to every project.
+
+B. MANAGE PYTHON VERSIONS
+
+uv can download and manage Python versions.
+
+Install Python 3.12:
+    uv python install 3.12
+
+Install Python 3.11:
+    uv python install 3.11
+
+List available Python versions:
+    uv python list
+
+You can then configure a project's Python version using its .python-version file or other supported project settings.
+
+C. DEFINE CUSTOM PROJECT COMMANDS
+
+You can define command-line entry points in pyproject.toml using [project.scripts].
+
+For example:
+
+[project.scripts]
+start = "ai_assistant.main:run"
+
+This example assumes your project contains an importable ai_assistant package, a main.py module inside it, and a callable function named run.
+
+After installing or synchronizing the project, you can run the command:
+
+    uv run start
+
+This is useful for creating convenient commands to launch your application.
+
+============================================================
+10. KEY TAKEAWAYS
+============================================================
+
+By using uv, you can:
+
+- Create modern Python projects with uv init.
+- Manage dependencies using uv add and uv remove.
+- Keep dependency versions consistent with uv.lock.
+- Automatically manage virtual environments.
+- Run scripts using uv run.
+- Install global development tools using uv tool install.
+- Manage Python versions with uv python.
+- Work with existing projects and requirements.txt files.
+
+The modern Python workflow is simpler with uv:
+
+CREATE A PROJECT
+        |
+        v
+ADD DEPENDENCIES
+        |
+        v
+RUN YOUR CODE
+
+============================================================
+WHAT'S NEXT?
+============================================================
+
+Now that you understand how to create and manage projects with uv, the next step is to build a small real-world Python application using it.
+
+You can practice by creating an AI assistant project, adding the required packages, organizing the code, and running the application through uv.
+
+============================================================
+END OF SECTION 3
+============================================================

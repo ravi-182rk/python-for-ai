@@ -1,0 +1,511 @@
+============================================================
+PYTHON PRACTICAL
+CHAPTER: CODE QUALITY
+============================================================
+
+FORMATTING WITH RUFF
+Automatically Format and Lint Your Python Code
+
+1. INTRODUCTION TO RUFF
+
+1.1 What Is Ruff?
+
+Ruff is a modern, extremely fast Python development tool.
+
+It combines several code-quality features into one tool:
+
+1. Linting:
+   Identifies code issues, style violations, unused imports, and potential errors.
+
+2. Formatting:
+   Automatically formats Python code to maintain consistent style and readability.
+
+3. Import Sorting:
+   Organizes and sorts import statements.
+
+Ruff is beginner-friendly, provides clear error messages, and integrates with Visual Studio Code (VS Code).
+
+1.2 What Is a Linter?
+
+A linter is a tool that analyzes your source code and identifies potential problems.
+
+Examples of issues a linter can detect:
+
+- Unused imports
+- Unused variables
+- Undefined names
+- Incorrect or unnecessary code patterns
+- Style violations
+- Potential programming mistakes
+
+Example:
+
+    import os
+    import sys
+
+    print("Hello")
+
+In this example, neither os nor sys is used.
+
+A linter can identify these unused imports and suggest removing them.
+
+1.3 What Is a Code Formatter?
+
+A code formatter automatically changes the appearance of your source code to follow consistent formatting rules.
+
+It can fix:
+
+- Indentation
+- Spacing
+- Blank lines
+- Quote consistency
+- Line wrapping
+- Collection formatting
+
+IMPORTANT DIFFERENCE:
+
+Linter:
+Identifies problems and provides suggestions. Some issues can also be fixed automatically.
+
+Formatter:
+Automatically changes code formatting to improve consistency and readability.
+
+Ruff provides both capabilities.
+
+============================================================
+2. INSTALL RUFF IN VS CODE
+============================================================
+
+You can integrate Ruff directly into Visual Studio Code using its official extension.
+
+2.1 Step 1: Open VS Code
+
+Open Visual Studio Code on your computer.
+
+2.2 Step 2: Open the Extensions Panel
+
+Use the following keyboard shortcut:
+
+Windows / Linux:
+
+    Ctrl + Shift + X
+
+Mac:
+
+    Cmd + Shift + X
+
+Alternatively, click the Extensions icon in the VS Code sidebar.
+
+2.3 Step 3: Search for Ruff
+
+Search for:
+
+    Ruff
+
+2.4 Step 4: Install the Official Extension
+
+Install the official Ruff extension published by Astral.
+
+The extension provides:
+
+- Python linting
+- Python formatting
+- Import sorting
+- Code diagnostics
+- Automatic fixes
+- Editor integration
+
+NOTE:
+
+The Ruff extension can cover many common use cases previously handled by separate tools such as:
+
+- Black: Python code formatting
+- isort: Import sorting
+- Flake8 and selected Pylint checks: Linting
+
+However, Ruff does not provide every feature of these tools.
+
+============================================================
+3. ENABLE FORMAT ON SAVE
+============================================================
+
+One of the most useful features in VS Code is automatic formatting when you save a Python file.
+
+This means you do not need to format your code manually every time.
+
+3.1 Step 1: Open VS Code Settings
+
+Use the following keyboard shortcut:
+
+Windows / Linux:
+
+    Ctrl + ,
+
+Mac:
+
+    Cmd + ,
+
+This opens the VS Code Settings panel.
+
+3.2 Step 2: Enable Format On Save
+
+Search for:
+
+    Format On Save
+
+Find the setting:
+
+    Editor: Format On Save
+
+Enable the checkbox.
+
+Now VS Code can automatically format files when you save them.
+
+3.3 Step 3: Set Ruff as the Default Formatter
+
+Search for:
+
+    Default Formatter
+
+Select the Ruff extension as the default formatter.
+
+You can also configure it directly in your VS Code settings.json file.
+
+Example:
+
+    {
+        "editor.formatOnSave": true,
+        "[python]": {
+            "editor.defaultFormatter": "charliermarsh.ruff"
+        }
+    }
+
+Explanation:
+
+1. editor.formatOnSave:
+   Enables automatic formatting when a file is saved.
+
+2. [python]:
+   Applies the following editor settings specifically to Python files.
+
+3. editor.defaultFormatter:
+   Selects Ruff as the formatter for Python files.
+
+IMPORTANT:
+The extension must be installed and available for this configuration to work.
+
+============================================================
+4. SEE RUFF IN ACTION
+============================================================
+
+Let's compare messy Python code with the automatically formatted version.
+
+4.1 Before Formatting
+
+Example:
+
+    import os
+    def   calculate_total(items):
+        total=0
+        for item in items:
+            total+=item['price']*item['quantity']
+        return total
+
+    shopping_cart=[{'name':'apple','price':0.5,'quantity':6},{'name':'banana','price':0.3,'quantity':8}]
+
+    print(calculate_total(shopping_cart))
+
+Problems in this code:
+
+- Inconsistent spacing
+- Missing blank lines
+- Poor readability
+- Long list declaration
+- Inconsistent quote style
+- Unused import
+
+4.2 After Formatting with Ruff
+
+After saving the file with Ruff configured:
+
+    def calculate_total(items):
+        total = 0
+        for item in items:
+            total += item["price"] * item["quantity"]
+        return total
+
+
+    shopping_cart = [
+        {"name": "apple", "price": 0.5, "quantity": 6},
+        {"name": "banana", "price": 0.3, "quantity": 8},
+    ]
+
+    print(calculate_total(shopping_cart))
+
+4.3 What Did Ruff Improve?
+
+Ruff automatically:
+
+1. Removed the unused import when the corresponding lint fix was applied.
+2. Added proper spacing around operators.
+3. Improved indentation consistency.
+4. Used consistent quotation marks.
+5. Added blank lines between code blocks.
+6. Formatted the shopping_cart list across multiple lines.
+7. Improved overall readability.
+
+IMPORTANT:
+
+Formatting and linting are different operations.
+
+The Ruff formatter handles formatting changes.
+
+Removing unused imports is a linting fix, not a formatting operation. It may require enabling Ruff's linting and fix-on-save settings.
+
+============================================================
+5. MANUALLY FORMAT YOUR CODE
+============================================================
+
+Sometimes automatic formatting may not work as expected.
+
+You can manually trigger Ruff formatting from VS Code.
+
+Steps:
+
+1. Open your Python file.
+2. Right-click inside the editor.
+3. Select "Format Document".
+4. If VS Code asks for a formatter, select Ruff.
+
+Alternatively, use the keyboard shortcut:
+
+Windows / Linux:
+
+    Shift + Alt + F
+
+Mac:
+
+    Shift + Option + F
+
+This triggers the document formatting command.
+
+If formatting still does not work, check:
+
+- Whether the Ruff extension is installed.
+- Whether Ruff is selected as the default formatter.
+- Whether the Python file is recognized correctly.
+- Whether another formatter is overriding Ruff.
+
+============================================================
+6. COMMON PYTHON FORMATTING RULES
+============================================================
+
+Ruff's default formatter follows many conventions from PEP 8, the Python style guide.
+
+6.1 Four Spaces for Indentation
+
+Recommended:
+
+    def greet():
+        print("Hello")
+
+Avoid inconsistent indentation.
+
+6.2 Spaces Around Operators
+
+Recommended:
+
+    x = 10
+    total = price * quantity
+
+Avoid:
+
+    x=10
+    total=price*quantity
+
+6.3 Blank Lines Between Functions
+
+Example:
+
+    def first_function():
+        print("First")
+
+
+    def second_function():
+        print("Second")
+
+Two blank lines are conventionally used between top-level function and class definitions.
+
+6.4 Default Line Length of 88 Characters
+
+Ruff uses a default line length of 88 characters for formatting.
+
+Long statements may be split across multiple lines for readability.
+
+Example:
+
+    shopping_cart = [
+        {"name": "apple", "price": 0.5, "quantity": 6},
+        {"name": "banana", "price": 0.3, "quantity": 8},
+    ]
+
+IMPORTANT:
+
+You do not need to memorize every formatting rule.
+
+Ruff automatically handles many formatting decisions for you.
+
+============================================================
+7. UNDERSTANDING LINTING ERRORS
+============================================================
+
+Ruff can identify code issues directly inside the VS Code editor.
+
+These issues are usually displayed with underlines or diagnostic markers.
+
+7.1 Example: Unused Imports
+
+Consider this code:
+
+    import os
+    import sys
+
+    print("Hello")
+
+Problem:
+
+Both os and sys are imported but never used.
+
+Ruff can detect these unused imports and report them.
+
+7.2 Understanding the Warning
+
+Hover your mouse over the underlined code.
+
+VS Code displays information such as:
+
+1. What the issue is.
+2. Why the issue was detected.
+3. Which rule was violated.
+4. How you can fix it.
+
+7.3 Why Should You Pay Attention to Linting Warnings?
+
+Linting helps you:
+
+- Identify potential bugs early.
+- Remove unnecessary code.
+- Maintain clean imports.
+- Improve code readability.
+- Follow consistent coding standards.
+- Maintain better project quality.
+
+IMPORTANT:
+
+Do not blindly ignore linting warnings.
+
+Understand the reason behind each warning and decide whether the suggested fix is appropriate.
+
+============================================================
+8. USEFUL RUFF COMMANDS
+============================================================
+
+You can also use Ruff directly from the terminal.
+
+8.1 Install Ruff
+
+Command:
+
+    pip install ruff
+
+8.2 Check Code for Linting Issues
+
+Command:
+
+    ruff check .
+
+Purpose:
+
+Checks Python files in the current project directory and reports linting issues.
+
+8.3 Automatically Fix Supported Issues
+
+Command:
+
+    ruff check . --fix
+
+Purpose:
+
+Automatically fixes supported linting issues, such as unused imports.
+
+NOTE:
+Not every linting issue can be fixed automatically.
+
+8.4 Format Python Code
+
+Command:
+
+    ruff format .
+
+Purpose:
+
+Formats Python files in the current project directory.
+
+8.5 Check Formatting Without Changing Files
+
+Command:
+
+    ruff format --check .
+
+Purpose:
+
+Checks whether files already follow Ruff's formatting rules without modifying them.
+
+============================================================
+9. WHAT'S NEXT?
+============================================================
+
+With Ruff configured in VS Code, you can improve your Python code quality automatically.
+
+You now have tools to:
+
+1. Format code consistently.
+2. Identify unused imports.
+3. Detect potential code problems.
+4. Organize import statements.
+5. Improve readability.
+6. Maintain consistent Python coding standards.
+
+Ruff helps you focus on writing Python code instead of manually fixing formatting issues.
+
+============================================================
+10. KEY TAKEAWAYS
+============================================================
+
+1. Ruff is a fast Python linting and formatting tool.
+
+2. A linter identifies code issues and potential errors.
+
+3. A formatter automatically improves code formatting.
+
+4. Ruff supports linting, formatting, and import sorting.
+
+5. Install the official Ruff extension from Astral in VS Code.
+
+6. Enable Editor: Format On Save for automatic formatting.
+
+7. Select Ruff as the default Python formatter.
+
+8. Use "Format Document" to format code manually.
+
+9. Use "ruff check ." to identify linting issues.
+
+10. Use "ruff check . --fix" to apply supported lint fixes.
+
+11. Use "ruff format ." to format Python files.
+
+12. Ruff helps maintain clean, readable, and consistent Python code.
+
+============================================================
+CHAPTER: CODE QUALITY
+============================================================
